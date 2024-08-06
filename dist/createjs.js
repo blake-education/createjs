@@ -26,8 +26,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
-this.createjs = this.createjs||{};
-
+var createjs = {};
 
 //##############################################################################
 // extend.js
@@ -19072,7 +19071,7 @@ createjs.deprecate = function(fallbackMethod, name) {
 	 * @protected
 	 */
 	p._isCanceled = function () {
-		if (window.createjs == null || this.canceled) {
+		if (createjs == null || this.canceled) {
 			return true;
 		}
 		return false;
@@ -30708,3 +30707,12 @@ createjs.deprecate = function(fallbackMethod, name) {
 	s.buildDate = /*=date*/"Thu, 14 Sep 2017 22:19:45 GMT"; // injected by build process
 
 })();
+
+Object.defineProperty(createjs, 'BitmapAnimation', {
+  get: function () {
+    console.warn('createjs.BitmapAnimation is deprecated. Use Sprite instead')
+    return this.Sprite
+  }
+})
+
+if(typeof module !== "undefined" && typeof module.exports !== "undefined") module.exports = createjs;
